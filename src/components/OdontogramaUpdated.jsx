@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button.jsx';
 import { Input } from '@/components/ui/input.jsx';
 import { Textarea } from '@/components/ui/textarea.jsx';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.jsx';
-import { User, FileText, Tooth, History, Download, Save } from 'lucide-react';
+import { User, FileText, Bluetooth as Tooth, History, Download, Save } from 'lucide-react';
 import GoogleAuth from './GoogleAuth';
 import CampoSimNao from './CampoSimNao';
 import MapaDentalInfantil from './MapaDentalInfantil';
