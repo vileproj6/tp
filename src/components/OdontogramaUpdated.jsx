@@ -8,6 +8,7 @@ import { User, FileText, Bluetooth as Tooth, History, Download, Save } from 'luc
 import GoogleAuth from './GoogleAuth';
 import CampoSimNao from './CampoSimNao';
 import MapaDentalInfantil from './MapaDentalInfantil';
+import MapaDentalAvancado from './MapaDentalAvancado';
 import HistoricoConsultas from './HistoricoConsultas';
 import PDFExporter from './PDFExporter';
 
@@ -91,6 +92,7 @@ const OdontogramaUpdated = () => {
     
     // Mapa Dental
     mapa_dental: [],
+    observacoes_dentais: '',
     
     // Informações Adicionais
     alimentacao_notas: '',
@@ -184,6 +186,13 @@ const OdontogramaUpdated = () => {
     setFormData(prev => ({
       ...prev,
       mapa_dental: selectedTeeth
+    }));
+  };
+
+  const handleObservationsChange = (observations) => {
+    setFormData(prev => ({
+      ...prev,
+      observacoes_dentais: observations
     }));
   };
 
@@ -894,9 +903,11 @@ const OdontogramaUpdated = () => {
               {/* Mapa Dental */}
               <TabsContent value="mapa-dental">
                 <div className="space-y-6">
-                  <MapaDentalInfantil
+                  <MapaDentalAvancado
                     selectedTeeth={formData.mapa_dental}
                     onTeethChange={handleTeethChange}
+                    observations={formData.observacoes_dentais}
+                    onObservationsChange={handleObservationsChange}
                   />
                   
                   <Card className="glass-card rounded-2xl border-white/20">
@@ -906,7 +917,7 @@ const OdontogramaUpdated = () => {
                     <CardContent className="space-y-4">
                       <div>
                         <label className="text-white font-medium text-sm mb-2 block">
-                          Observações sobre alimentação
+                          Hábitos alimentares
                         </label>
                         <Textarea
                           value={formData.alimentacao_notas}
@@ -917,7 +928,7 @@ const OdontogramaUpdated = () => {
                       </div>
                       <div>
                         <label className="text-white font-medium text-sm mb-2 block">
-                          Outras informações relevantes
+                          Informações complementares
                         </label>
                         <Textarea
                           value={formData.informacoes_adicionais}
