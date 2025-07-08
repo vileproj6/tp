@@ -5,21 +5,23 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.j
 const GoogleAuth = ({ onLogin }) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  // Login direto sem simulação de delay
   const handleGoogleLogin = () => {
     console.log('Botão clicado - iniciando login');
     setIsLoading(true);
     
-    const mockUser = {
-      id: '123456789',
-      name: 'Dr. Paulo Silva',
-      email: 'paulo@clinica.com',
-      picture: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=100&h=100&fit=crop&crop=face'
-    };
-    
-    console.log('Chamando onLogin com:', mockUser);
-    onLogin(mockUser);
-    setIsLoading(false);
+    // Simular um pequeno delay para mostrar o loading
+    setTimeout(() => {
+      const mockUser = {
+        id: '123456789',
+        name: 'Dr. Paulo Silva',
+        email: 'paulo@clinica.com',
+        picture: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=100&h=100&fit=crop&crop=face'
+      };
+      
+      console.log('Chamando onLogin com:', mockUser);
+      onLogin(mockUser);
+      setIsLoading(false);
+    }, 500);
   };
 
   return (
@@ -61,7 +63,7 @@ const GoogleAuth = ({ onLogin }) => {
           <Button
             onClick={handleGoogleLogin}
             disabled={isLoading}
-            className="w-full glass-button py-3 text-white font-semibold flex items-center justify-center space-x-3 hover:bg-white/20 transition-all disabled:opacity-50"
+            className="w-full bg-white/10 backdrop-blur-sm border border-white/20 py-3 text-white font-semibold flex items-center justify-center space-x-3 hover:bg-white/20 transition-all disabled:opacity-50 rounded-md"
             type="button"
           >
             {isLoading ? (
@@ -82,10 +84,11 @@ const GoogleAuth = ({ onLogin }) => {
           {/* Botão alternativo para bypass */}
           <Button
             onClick={handleGoogleLogin}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 font-semibold"
+            disabled={isLoading}
+            className="w-full bg-blue-600/80 backdrop-blur-sm border border-blue-500/30 hover:bg-blue-700/80 text-white py-3 font-semibold rounded-md transition-all disabled:opacity-50"
             type="button"
           >
-            Entrar Diretamente (Bypass)
+            {isLoading ? 'Entrando...' : 'Entrar Diretamente (Bypass)'}
           </Button>
 
           <div className="text-center">
